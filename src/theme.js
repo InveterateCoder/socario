@@ -17,7 +17,7 @@ const theme = createMuiTheme({
       },
     },
   },
-  cardWidth: '330px',
+  cardWidth: '350px',
 })
 
 export default theme
