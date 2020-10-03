@@ -1,12 +1,14 @@
 import React from 'react'
-import { CssBaseline } from '@material-ui/core'
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
+import Home from './Home.jsx'
+import theme from './theme'
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <h1>Hello</h1>
-    </>
+      <Home />
+    </ThemeProvider>
   )
 }
 

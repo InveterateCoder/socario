@@ -1,15 +1,11 @@
 import {
-  SET_DARK, SET_DRAWER_TYPE, SET_DRAWER_OPEN,
+  LOAD_CITIES
 } from './actions'
 
 export default function reducer(state = {}, action) {
   switch (action.type) {
-    case SET_DARK:
-      return { ...state, dark: action.payload }
-    case SET_DRAWER_TYPE:
-      return { ...state, dtype: action.payload, dopen: false }
-    case SET_DRAWER_OPEN:
-      return { ...state, dopen: action.payload }
+    case LOAD_CITIES:
+      return { ...state, cities: action.payload }
     default:
       return state
   }

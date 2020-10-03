@@ -36,6 +36,18 @@ const clientConfig = {
           },
         },
       },
+      {
+        test: /\.csv$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'csv-loader',
+          options: {
+            dynamicTyping: true,
+            header: true,
+            skipEmptyLines: true,
+          },
+        },
+      },
     ],
   },
   optimization: {
