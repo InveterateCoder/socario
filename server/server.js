@@ -5,7 +5,7 @@ const render = require('./render')
 function server(val) {
   const app = val || express()
 
-  app.use(express.static(path.resolve(__dirname, 'public')))
+  app.use(express.static(path.resolve(__dirname)))
   app.get('/', render)
   app.use('*', (req, res) => {
     res.status(404).end()

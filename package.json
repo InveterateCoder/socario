@@ -5,9 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "nodemon --watch server --exec \"npm run dev-server && node dist/server.js\"",
+    "start": "nodemon --watch server --exec \"npm run dev-server && node docs/server.js\"",
     "dev-server": "webpack --config webpack.config.server.dev.js",
-    "compile": "rm -r dist && webpack",
+    "compile": "rm -r docs && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -8,7 +8,7 @@ const clientConfig = {
   entry: { app: ['./src/index.jsx'] },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist', 'public'),
+    path: path.resolve(__dirname, 'docs'),
     publicPath: '/',
   },
   module: {
@@ -53,7 +53,7 @@ const serverConfig = {
   externals: [nodeExternals()],
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     publicPath: '/',
   },
   module: {
@@ -83,7 +83,7 @@ const serverConfig = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'public', to: 'public' },
+        { from: 'public', to: '' },
       ],
     }),
   ],
