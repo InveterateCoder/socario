@@ -24,27 +24,12 @@ const clientConfig = {
                 '@babel/preset-env',
                 {
                   targets: {
-                    chrome: 55,
-                    firefox: 50,
-                    safari: 10,
-                    edge: 38,
+                    chrome: 70,
                   },
                 },
               ],
               '@babel/preset-react',
             ],
-          },
-        },
-      },
-      {
-        test: /\.csv$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'csv-loader',
-          options: {
-            dynamicTyping: true,
-            header: true,
-            skipEmptyLines: true,
           },
         },
       },

@@ -1,5 +1,9 @@
-import React from 'react'
-import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core'
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useEffect } from 'react'
+import {
+  makeStyles, useMediaQuery, useTheme, Collapse, Switch, FormControlLabel
+} from '@material-ui/core'
+import { useSelector } from 'react-redux'
 import clsx from 'clsx'
 import Selector from './Selector.jsx'
 import Card from './Card.jsx'
@@ -36,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     gridRow: 1,
     margin: `0 ${theme.spacing(2)}px 0 auto`,
     paddingTop: theme.spacing(4),
-    backgroundColor: 'yellow',
   },
   selectorCenter: {
     margin: '0 auto !important',
@@ -48,28 +51,75 @@ const useStyles = makeStyles((theme) => ({
   bgNight: {
     backgroundImage: 'url(img/night.png)',
   },
+  switch: {
+    position: 'relative',
+    gridRow: 1,
+    gridColumn: 2,
+    margin: '0 auto',
+    top: 5,
+    color: 'white',
+    textShadow: '0 0 5px black',
+  },
 }))
 
 function Home() {
   const classes = useStyles()
   const theme = useTheme()
   const md = useMediaQuery(theme.breakpoints.down('md'))
-
+  const [open, setOpen] = useState(true)
+  useEffect(() => {
+    if (!md) setOpen(true)
+    else if (md) setOpen(false)
+  }, [md])
+  const selectedWeather = useSelector((state) => {
+    const empty = Object.keys(state.selectedWeather).length === 0
+    if (empty) {
+      return null
+    }
+    return state.selectedWeather
+  })
+  useEffect(() => setOpen(!md), [selectedWeather])
+  const bg = useSelector((state) => state.bg)
   return (
-    <div className={clsx(classes.grid, { [classes.gridCenter]: md })}>
-      <div className={clsx(classes.root, classes.cardRoot, classes.bgDay)}>
-        <Card />
-      </div>
-      <div
+    <div className={clsx(
+      classes.grid, { [classes.gridCenter]: md },
+    )}
+    >
+      {
+        selectedWeather && (
+          <div className={clsx(classes.root, classes.cardRoot, classes[bg])}>
+            <Card {...selectedWeather} />
+          </div>
+        )
+      }
+      <Collapse
+        in={open || !selectedWeather}
         className={clsx(
           classes.root,
           classes.selectorRoot,
-          classes.bgDay,
-          { [classes.selectorCenter]: md },
+          {
+            [classes.selectorCenter]: md,
+            [classes[bg]]: !md,
+          },
         )}
       >
         <Selector />
-      </div>
+      </Collapse>
+      {md && selectedWeather && (
+        <div className={classes.switch}>
+          <FormControlLabel
+            control={(
+              <Switch
+                size="small"
+                color="primary"
+                onChange={({ target: { checked } }) => setOpen(checked)}
+                checked={open}
+              />
+            )}
+            label="Location"
+          />
+        </div>
+      )}
     </div>
   )
 }

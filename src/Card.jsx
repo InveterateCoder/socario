@@ -15,28 +15,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Card() {
+function Card(prop) {
   const classes = useStyles()
 
   return (
     <Paper className={classes.paper}>
       <CardHeader
-        country="RU"
-        name="Moscow"
-        timezone={10800}
-        dt={1601751932}
+        country={prop.country}
+        name={prop.name}
+        timezone={prop.timezone}
+        dt={prop.dt}
       />
       <CardBody
-        main="Clouds"
-        temp={Math.floor(13.12)}
-        tempMin={Math.floor(11)}
-        tempMax={Math.floor(15)}
-        humidity={66}
-        pressure={1029}
-        wind={4}
-        sunrise={1601696195}
-        sunset={1601737210}
-        timezone={10800}
+        main={prop.main}
+        temp={Math.round(prop.temp)}
+        tempMin={Math.round(prop.tempMin)}
+        tempMax={Math.round(prop.tempMax)}
+        humidity={prop.humidity}
+        pressure={prop.pressure}
+        wind={prop.wind}
+        sunrise={prop.sunrise}
+        sunset={prop.sunset}
+        timezone={prop.timezone}
       />
     </Paper>
   )

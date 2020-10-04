@@ -4,6 +4,8 @@ import {
   IconButton, makeStyles,
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { useDispatch } from 'react-redux'
+import { removeCity, selectCity } from './store/actions'
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -14,15 +16,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function City() {
+function City({
+  name, country, temp, id,
+}) {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
+  const onClick = () => {
+    dispatch(selectCity(id))
+  }
 
   return (
-    <ListItem button dense disableRipple className={classes.listItem}>
-      <ListItemText primary="Russia, Moscow" />
-      <ListItemText style={{ textAlign: 'center' }} secondary="15 &#8451;" />
+    <ListItem button dense disableRipple className={classes.listItem} onClick={onClick}>
+      <ListItemText primary={`${name}, ${country}`} />
+      <ListItemText style={{ textAlign: 'right', paddingRight: '1em' }} secondary={`${temp}℃`} />
       <ListItemSecondaryAction>
-        <IconButton size="small" edge="end" aria-label="delete">
+        <IconButton size="small" edge="end" onClick={() => dispatch(removeCity(id))}>
           <DeleteIcon />
         </IconButton>
       </ListItemSecondaryAction>
