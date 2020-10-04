@@ -1,4 +1,5 @@
 /* eslint-disable no-alert */
+
 const apikey = '330216f9e3042b8a57a7865c3de67865'
 
 export const ADD_CITY = 'add_city'

@@ -22,7 +22,7 @@ export default function reducer(state = initialData, action) {
       return {
         ...state,
         selectedWeather: action.payload,
-        bg: action.payload.dt > action.payload.sunset ? 'bgNight' : 'bgDay',
+        bg: (action.payload.dt > action.payload.sunset || action.payload.dt < action.payload.sunrise) ? 'bgNight' : 'bgDay',
       }
     case UPDATE_LIST_WEATHER: {
       const watchedCities = state.watchedCities.map((city) => {
