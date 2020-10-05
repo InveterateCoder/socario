@@ -1,5 +1,4 @@
-# socario
-SOCARIO Inc. Test
+# SOCARIO Inc. Test
 
 #### Список задач и выполнение:
 
