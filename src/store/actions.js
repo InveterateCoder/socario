@@ -5,13 +5,11 @@ import keys from '../keys'
 async function request(req) {
   let url = null
   try {
-    if (isNaN(req)) {
-      if (Array.isArray(req)) {
-        if (req.length === 0) return null
-        url = `group?id=${req.join(',')}`
-      } else {
-        url = `weather?lat=${req.lat}&lon=${req.lon}`
-      }
+    if (Array.isArray(req)) {
+      if (req.length === 0) return null
+      url = `group?id=${req.join(',')}`
+    } else if (isNaN(req)) {
+      url = `weather?lat=${req.lat}&lon=${req.lon}`
     } else {
       url = `weather?id=${req}`
     }

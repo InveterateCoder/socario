@@ -29,6 +29,7 @@ export default function reducer(state = initialData, action) {
         const { temp } = action.payload.find(({ id }) => id === city.id)
         return { ...city, temp }
       })
+      localStorage.setItem('watchedCities', JSON.stringify(watchedCities))
       return { ...state, watchedCities }
     }
     default:
