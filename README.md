@@ -1,4 +1,4 @@
-# SOCARIO Inc. Test
+# SOCIARO Inc. Test
 https://inveteratecoder.github.io/socario/
 
 #### Список задач и выполнение:
